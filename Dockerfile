@@ -5,7 +5,7 @@ LABEL org.opencontainers.image.source="https://github.com/ich777/docker-krusader
 
 RUN export TZ=Europe/Rome && \
 	apt-get update && \
-    apt-get -y install --no-install-recommends krusader breeze-icon-theme kompare krename bzip2 lzma xz-utils  lhasa zip unzip arj unace rar unrar p7zip-full rpm konsole gedit dbus-x11 keditbookmarks feh fonts-takao fonts-arphic-uming fonts-noto-cjk && \
+    apt-get -y install --no-install-recommends krusader breeze-icon-theme kompare krename bzip2 lzma xz-utils  lhasa zip unzip arj unace rar unrar p7zip-full rpm konsole gedit gwenview dbus-x11 keditbookmarks feh fonts-takao fonts-arphic-uming fonts-noto-cjk && \
 	ln -s /usr/bin/arj /usr/bin/unarj && \
 	ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
 	echo $TZ > /etc/timezone && \
@@ -22,8 +22,8 @@ RUN tar -C / -xvf /tmp/locales_krusader.tar && \
 	rm -rf /tmp/locales_krusader.tar
 
 ENV DATA_DIR=/krusader
-ENV CUSTOM_RES_W=1280
-ENV CUSTOM_RES_H=768
+ENV CUSTOM_RES_W=1920
+ENV CUSTOM_RES_H=900
 ENV CUSTOM_DEPTH=16
 ENV NOVNC_PORT=8080
 ENV RFB_PORT=5900
