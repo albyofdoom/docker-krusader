@@ -1,8 +1,5 @@
 FROM ich777/novnc-baseimage
 
-LABEL org.opencontainers.image.authors="admin@minenet.at"
-LABEL org.opencontainers.image.source="https://github.com/ich777/docker-krusader"
-
 RUN export TZ=Europe/Rome && \
 	apt-get update && \
     apt-get -y install --no-install-recommends krusader breeze-icon-theme kompare krename bzip2 lzma xz-utils  lhasa zip unzip arj unace rar unrar p7zip-full rpm konsole gedit gwenview dbus-x11 keditbookmarks feh fonts-takao fonts-arphic-uming fonts-noto-cjk && \
@@ -10,6 +7,11 @@ RUN export TZ=Europe/Rome && \
 	ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
 	echo $TZ > /etc/timezone && \
 	apt-get -y install --no-install-recommends fonts-takao && \
+	wget https://www.scootersoftware.com/files/bcompare-5.1.5.31310_amd64.deb && \
+	wget https://www.xnview.com/download.php?file=XnViewMP-linux-x64.deb && \
+	apt-get update && \
+	apt-get -y install ./bcompare-5.1.5.31310_amd64.deb && \
+	apt-get -y install ./XnViewMP-linux-x64.deb && \
 	echo "ko_KR.UTF-8 UTF-8" >> /etc/locale.gen && \ 
 	echo "ja_JP.UTF-8 UTF-8" >> /etc/locale.gen && \
 	locale-gen && \
