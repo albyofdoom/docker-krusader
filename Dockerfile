@@ -21,7 +21,11 @@ RUN export TZ=Europe/Rome && \
 	locale-gen && \
 	rm -rf /var/lib/apt/lists/* && \
 	sed -i '/    document.title =/c\    document.title = "Krusader - noVNC";' /usr/share/novnc/app/ui.js && \
-	rm /usr/share/novnc/app/images/icons/*
+	rm /usr/share/novnc/app/images/icons/* && \
+	apt-get update && apt-get install -y && \
+    python3 && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 COPY locales_krusader.tar /tmp/locales_krusader.tar
 RUN tar -C / -xvf /tmp/locales_krusader.tar && \
@@ -45,11 +49,6 @@ RUN mkdir $DATA_DIR && \
 	useradd -d $DATA_DIR -s /bin/bash $USER && \
 	chown -R $USER $DATA_DIR && \
 	ulimit -n 2048
-
-RUN apt-get update && apt-get install -y \
-    python3 \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
 
 ADD /scripts/ /opt/scripts/
 COPY /icons/* /usr/share/novnc/app/images/icons/
