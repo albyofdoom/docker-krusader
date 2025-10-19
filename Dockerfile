@@ -11,7 +11,7 @@ RUN export TZ=Europe/Rome && \
 	cp scootersoftware.list /etc/apt/sources.list.d/ && \
 	apt-get update && \
 	apt-get -y install krusader breeze-icon-theme kompare krename bzip2 lzma xz-utils  lhasa zip unzip arj unace rar unrar p7zip-full rpm konsole gedit gwenview dbus-x11 keditbookmarks feh fonts-takao fonts-arphic-uming fonts-noto-cjk apt-utils && \
-	apt-get -y install --install-recommends bcompare && \
+	apt-get -y install --no-install-recommends bcompare && \
 	ln -s /usr/bin/arj /usr/bin/unarj && \
 	ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
 	echo $TZ > /etc/timezone && \
