@@ -5,8 +5,13 @@ LABEL org.opencontainers.image.source="https://github.com/ich777/docker-krusader
 
 RUN export TZ=Europe/Rome && \
 	echo "deb http://deb.debian.org/debian bookworm contrib non-free non-free-firmware" > /etc/apt/sources.list && \
+	wget https://www.scootersoftware.com/DEB-GPG-KEY-scootersoftware.asc && \
+	cp DEB-GPG-KEY-scootersoftware.asc /etc/apt/trusted.gpg.d/ && \
+	wget https://www.scootersoftware.com/scootersoftware.list && \
+	cp scootersoftware.list /etc/apt/sources.list.d/ && \
 	apt-get update && \
-    apt-get -y install --no-install-recommends krusader breeze-icon-theme kompare krename bzip2 lzma xz-utils  lhasa zip unzip arj unace rar unrar p7zip-full rpm konsole gedit dbus-x11 keditbookmarks feh fonts-takao fonts-arphic-uming fonts-noto-cjk && \
+	apt-get -y install krusader breeze-icon-theme kompare krename bzip2 lzma xz-utils  lhasa zip unzip arj unace rar unrar p7zip-full rpm konsole gedit gwenview dbus-x11 keditbookmarks feh fonts-takao fonts-arphic-uming fonts-noto-cjk apt-utils && \
+	apt-get -y install --install-recommends bcompare && \
 	ln -s /usr/bin/arj /usr/bin/unarj && \
 	ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
 	echo $TZ > /etc/timezone && \
@@ -23,8 +28,8 @@ RUN tar -C / -xvf /tmp/locales_krusader.tar && \
 	rm -rf /tmp/locales_krusader.tar
 
 ENV DATA_DIR=/krusader
-ENV CUSTOM_RES_W=1280
-ENV CUSTOM_RES_H=768
+ENV CUSTOM_RES_W=1920
+ENV CUSTOM_RES_H=920
 ENV CUSTOM_DEPTH=16
 ENV NOVNC_PORT=8080
 ENV RFB_PORT=5900
