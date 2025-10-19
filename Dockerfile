@@ -6,12 +6,13 @@ LABEL org.opencontainers.image.source="https://github.com/ich777/docker-krusader
 RUN export TZ=Europe/Rome && \
 	echo "deb http://deb.debian.org/debian bookworm contrib non-free non-free-firmware" > /etc/apt/sources.list && \
 	wget https://www.scootersoftware.com/DEB-GPG-KEY-scootersoftware.asc && \
-	cp DEB-GPG-KEY-scootersoftware.asc /etc/apt/trusted.gpg.d/ && \
 	wget https://www.scootersoftware.com/scootersoftware.list && \
+	cp DEB-GPG-KEY-scootersoftware.asc /etc/apt/trusted.gpg.d/ && \
 	cp scootersoftware.list /etc/apt/sources.list.d/ && \
 	apt-get update && \
-	apt-get -y install krusader breeze-icon-theme kompare krename bzip2 lzma xz-utils lhasa zip unzip arj unace rar unrar p7zip-full rpm konsole gedit gwenview dbus-x11 keditbookmarks feh fonts-takao fonts-arphic-uming fonts-noto-cjk apt-utils nano && \
+	apt-get -y install --no-install-recommends krusader breeze-icon-theme kompare krename bzip2 lzma xz-utils lhasa zip unzip arj unace rar unrar p7zip-full rpm konsole gedit gwenview dbus-x11 keditbookmarks feh fonts-takao fonts-arphic-uming fonts-noto-cjk apt-utils nano && \
 	apt-get -y install --no-install-recommends bcompare && \
+	apt-get upgrade -y && \
 	ln -s /usr/bin/arj /usr/bin/unarj && \
 	ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
 	echo $TZ > /etc/timezone && \
@@ -22,8 +23,7 @@ RUN export TZ=Europe/Rome && \
 	rm -rf /var/lib/apt/lists/* && \
 	sed -i '/    document.title =/c\    document.title = "Krusader - noVNC";' /usr/share/novnc/app/ui.js && \
 	rm /usr/share/novnc/app/images/icons/* && \
-	apt-get update && apt-get install -y && \
-    python3 && \
+	apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
