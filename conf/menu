@@ -1,0 +1,14 @@
+[begin] (Fluxbox)
+    [exec] (Terminal) {xterm}
+    [sep]
+
+    [submenu] (Editors)
+        [exec] (Nano - terminal) {xterm -e nano}
+    [end]
+
+    [sep]
+    [workspaces]
+    [reconfigure]
+    [restart]
+    [exit]
+[end]
