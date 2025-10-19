@@ -46,6 +46,11 @@ RUN mkdir $DATA_DIR && \
 	chown -R $USER $DATA_DIR && \
 	ulimit -n 2048
 
+RUN apt-get update && apt-get install -y \
+    python3 \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
 ADD /scripts/ /opt/scripts/
 COPY /icons/* /usr/share/novnc/app/images/icons/
 COPY /conf/ /etc/.fluxbox/
