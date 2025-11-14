@@ -1,5 +1,33 @@
 # Krusader in Docker optimized for Unraid
-Krusader is an advanced orthodox file manager for KDE and other desktops in the Unix world. It is similar to the console-based GNU Midnight Commander, GNOME Commander for the GNOME desktop environment, or Total Commander for Windows, all of which can trace their paradigmatic features to the original Norton Commander for DOS. It supports extensive archive handling, mounted filesystem support, FTP, advanced search, viewer/editor, directory synchronisation, file content comparisons, batch renaming, etc.
+
+## Purpose
+This Docker container provides Krusader, an advanced orthodox file manager for KDE and other desktops in the Unix world, accessible through a web browser via noVNC. It is similar to the console-based GNU Midnight Commander, GNOME Commander for the GNOME desktop environment, or Total Commander for Windows, all of which can trace their paradigmatic features to the original Norton Commander for DOS. It supports extensive archive handling, mounted filesystem support, FTP, advanced search, viewer/editor, directory synchronisation, file content comparisons, batch renaming, etc.
+
+The container includes a full desktop environment accessible via web browser on port 8080, making it ideal for remote file management tasks.
+
+## Included Packages
+The container includes the following key packages:
+- **File Management**: krusader, krename, breeze-icon-theme
+- **Comparison Tools**: kompare, bcompare (Beyond Compare)
+- **Archive Support**: bzip2, lzma, xz-utils, lhasa, zip, unzip, arj, unace, rar, unrar, p7zip-full, rpm
+- **Terminal & Editors**: konsole, gedit, nano
+- **Image Viewer**: gwenview, feh
+- **Database Client**: mariadb-client-compat
+- **Desktop Integration**: dbus-x11, keditbookmarks
+- **Font Support**: fonts-takao, fonts-arphic-uming, fonts-noto-cjk (for CJK languages)
+
+## Building the Image
+To build the Docker image from source:
+
+```bash
+docker build -t wolgan/dockerkrusader:latest .
+```
+
+For a clean build without cache:
+
+```bash
+docker build --no-cache -t wolgan/dockerkrusader:latest .
+```
 
 **Language Notice:** Enter your prefered locales, you can find a full list of supported languages in: '/usr/share/i18n/SUPPORTED' simply open up a console from the Container and type in 'cat /usr/share/i18n/SUPPORTED' (eg: 'en_US.UTF-8 UTF8' or 'de_DE.UTF-8 UTF-8', 'fr_FR.UTF-8 UTF-8'...)
 

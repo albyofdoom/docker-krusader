@@ -10,7 +10,7 @@ RUN export TZ=Europe/Rome && \
 	cp DEB-GPG-KEY-scootersoftware.asc /etc/apt/trusted.gpg.d/ && \
 	cp scootersoftware.list /etc/apt/sources.list.d/ && \
 	apt-get update && \
-	apt-get -y install --no-install-recommends krusader breeze-icon-theme kompare krename bzip2 lzma xz-utils lhasa zip unzip arj unace rar unrar p7zip-full rpm konsole gedit gwenview dbus-x11 keditbookmarks feh fonts-takao fonts-arphic-uming fonts-noto-cjk apt-utils nano && \
+	apt-get -y install --no-install-recommends krusader breeze-icon-theme kompare krename bzip2 lzma xz-utils lhasa zip unzip arj unace rar unrar p7zip-full rpm konsole gedit gwenview dbus-x11 keditbookmarks feh fonts-takao fonts-arphic-uming fonts-noto-cjk apt-utils nano mariadb-client-compat && \
 	apt-get -y install --no-install-recommends bcompare && \
 	apt-get upgrade -y && \
 	ln -s /usr/bin/arj /usr/bin/unarj && \
