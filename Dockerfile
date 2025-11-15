@@ -4,13 +4,20 @@ LABEL org.opencontainers.image.authors="admin@minenet.at"
 LABEL org.opencontainers.image.source="https://github.com/ich777/docker-krusader"
 
 RUN export TZ=Europe/Rome && \
-	echo "deb http://deb.debian.org/debian bookworm contrib non-free non-free-firmware" > /etc/apt/sources.list && \
+	rm -f /etc/apt/sources.list.d/*.list && \
+	echo "deb http://deb.debian.org/debian bookworm main contrib non-free non-free-firmware" > /etc/apt/sources.list && \
+	echo "deb http://deb.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware" >> /etc/apt/sources.list && \
+	echo "deb http://deb.debian.org/debian bookworm-updates main contrib non-free non-free-firmware" >> /etc/apt/sources.list && \
 	wget https://www.scootersoftware.com/DEB-GPG-KEY-scootersoftware.asc && \
 	wget https://www.scootersoftware.com/scootersoftware.list && \
 	cp DEB-GPG-KEY-scootersoftware.asc /etc/apt/trusted.gpg.d/ && \
 	cp scootersoftware.list /etc/apt/sources.list.d/ && \
 	apt-get update && \
-	apt-get -y install --no-install-recommends krusader breeze-icon-theme kompare krename bzip2 lzma xz-utils lhasa zip unzip arj unace rar unrar p7zip-full rpm konsole gedit gwenview dbus-x11 keditbookmarks feh fonts-takao fonts-arphic-uming fonts-noto-cjk apt-utils nano mariadb-client-compat bc && \
+	apt-get -y install --no-install-recommends wget ca-certificates gnupg && \
+	wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > /usr/share/keyrings/microsoft.gpg && \
+	echo "deb [arch=amd64 signed-by=/usr/share/keyrings/microsoft.gpg] https://packages.microsoft.com/debian/12/prod bookworm main" > /etc/apt/sources.list.d/microsoft.list && \
+	apt-get update && \
+	apt-get -y install --no-install-recommends krusader breeze-icon-theme kompare krename bzip2 lzma xz-utils lhasa zip unzip arj unace rar unrar p7zip-full rpm konsole gedit gwenview dbus-x11 keditbookmarks feh fonts-takao fonts-arphic-uming fonts-noto-cjk apt-utils nano mariadb-client-compat bc libicu72 powershell && \
 	apt-get -y install --no-install-recommends bcompare && \
 	apt-get upgrade -y && \
 	ln -s /usr/bin/arj /usr/bin/unarj && \
