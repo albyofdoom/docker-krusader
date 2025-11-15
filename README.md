@@ -1,9 +1,18 @@
-# Krusader in Docker optimized for Unraid
+# Krusader in Docker - Self-Contained
 
 ## Purpose
-This Docker container provides Krusader, an advanced orthodox file manager for KDE and other desktops in the Unix world, accessible through a web browser via noVNC. It is similar to the console-based GNU Midnight Commander, GNOME Commander for the GNOME desktop environment, or Total Commander for Windows, all of which can trace their paradigmatic features to the original Norton Commander for DOS. It supports extensive archive handling, mounted filesystem support, FTP, advanced search, viewer/editor, directory synchronisation, file content comparisons, batch renaming, etc.
+This is a fully self-contained Docker container that provides Krusader, an advanced orthodox file manager for KDE and other desktops in the Unix world, accessible through a web browser via noVNC. Built from scratch on Debian Bookworm without relying on upstream base images, this container is designed for learning and as a customizable base for remote file management.
 
-The container includes a full desktop environment accessible via web browser on port 8080, making it ideal for remote file management tasks.
+It is similar to the console-based GNU Midnight Commander, GNOME Commander for the GNOME desktop environment, or Total Commander for Windows, all of which can trace their paradigmatic features to the original Norton Commander for DOS. It supports extensive archive handling, mounted filesystem support, FTP, advanced search, viewer/editor, directory synchronisation, file content comparisons, batch renaming, etc.
+
+The container includes a full desktop environment (Fluxbox) with VNC and noVNC servers, all accessible via web browser on port 8080, making it ideal for remote file management tasks.
+
+## Architecture
+- **Base**: Debian Bookworm (stable)
+- **Display Server**: TigerVNC
+- **Window Manager**: Fluxbox
+- **Web Interface**: noVNC (Python-based)
+- **Shell**: PowerShell 7.x included alongside bash
 
 ## Included Packages
 The container includes the following key packages:
@@ -11,10 +20,12 @@ The container includes the following key packages:
 - **Comparison Tools**: kompare, bcompare (Beyond Compare)
 - **Archive Support**: bzip2, lzma, xz-utils, lhasa, zip, unzip, arj, unace, rar, unrar, p7zip-full, rpm
 - **Terminal & Editors**: konsole, gedit, nano
+- **Shells**: bash, PowerShell 7.x (pwsh)
 - **Image Viewer**: gwenview, feh
-- **Database Client**: mariadb-client-compat
+- **Database Client**: mariadb-client
 - **Desktop Integration**: dbus-x11, keditbookmarks
 - **Font Support**: fonts-takao, fonts-arphic-uming, fonts-noto-cjk (for CJK languages)
+- **VNC/Display**: TigerVNC, Fluxbox, noVNC, Xvfb
 
 ## Building the Image
 To build the Docker image from source:

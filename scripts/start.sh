@@ -40,7 +40,7 @@ else
 fi
 
 echo "---Checking configuration for noVNC---"
-novnccheck
+# novnccheck removed - no longer needed with standard packages
 
 echo "---Taking ownership of data...---"
 chown -R root:${GID} /opt/scripts
